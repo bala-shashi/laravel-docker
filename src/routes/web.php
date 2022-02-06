@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Contact;
+use App\Http\Controllers\Order;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/order', [Order::class, 'index']);
+Route::get('/contact', [Contact::class, 'index']);
+
+Route::post('/order', [Order::class, 'create'])->name('order')->middleware('pageState');
+Route::post('/contact', [Contact::class, 'create'])->name('contact')->middleware('pageState');
+
+
+// Route::resource('/quotes', QuoteController::class);
